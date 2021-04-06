@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# import library yang digunakan
 from PIL import Image
 import sys
 import mahotas as mh
@@ -8,6 +9,7 @@ from pathfinding.core.diagonal_movement import DiagonalMovement
 from pathfinding.core.grid import Grid
 from pathfinding.finder.a_star import AStarFinder
 
+# fungsi untuk menghitung porositas absolut
 def absolute_porosity(filename):
 	CITRA = Image.open(filename).convert('L')
 	PIXEL = CITRA.load()
@@ -26,6 +28,7 @@ def absolute_porosity(filename):
 
 	return porosity
 
+# fungsi untuk menghitung luas permukaan spesifik
 def surface_area(filename, resolution=1):
 	CITRA = mh.imread(filename)
 	perimCITRA = mh.bwperim(CITRA)
@@ -45,6 +48,7 @@ def surface_area(filename, resolution=1):
 
 	return ssa
 
+# fungsi untuk menghitung tortuositas
 def tortuosity(filename):
 	CITRA = Image.open(filename).convert('L')
 	PIXEL = CITRA.load()
@@ -96,6 +100,7 @@ def tortuosity(filename):
 
 	return tor_x
 
+# fungsi untuk menghitung rata-rata ukuran pori
 def avg_pore_size(filename):
 
 	# Using Octave
